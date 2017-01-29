@@ -975,6 +975,12 @@ $(function() {
         update();
     });
 
+    $('#start-over-btn').click(function(e) {
+        e.preventDefault();
+        command_list.set_current(0);
+        update();
+    })
+
     var update = function() {
         command_list.apply(board);
         update_command_list();
@@ -1076,13 +1082,13 @@ $(function() {
     $('#view-arrow').change(function(e) {
         update();
     });
-    $('#prev-command').click(function(e) {
+    $('#prev-command, #prev-btn').click(function(e) {
         e.preventDefault();
         e.stopPropagation();
         command_list.add_current(-1);
         update();
     });
-    $('#next-command').click(function(e) {
+    $('#next-command, #next-btn').click(function(e) {
         e.preventDefault();
         e.stopPropagation();
         command_list.add_current(1);
@@ -1338,7 +1344,10 @@ $(function() {
         </div>
         <div class="col-md-5">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
+                <h3>Portal List</h3>
+            </div>
+            <div class="col-md-6" style="margin-top: 20px;">
               <p id="portal-info" class="text-right"># of Fields: <span class="cf">10</span>(<span class="current-cf">5</span>), # of Links: <span class="link">15</span>(<span class="current-link">10</span>)</p>
             </div>
             <div class="col-md-12">
@@ -1349,6 +1358,19 @@ $(function() {
             </div>
           </div>
           <div class="row">
+            <div class="col-md-12">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+                <h3>Action List</h3>
+            </div>
+            <div class="col-md-6" style="margin-top: 20px">
+                <button id="next-btn" class="pull-right btn btn-default">Next Step</button>
+                <button id="prev-btn" class="pull-right btn btn-default">Previous Step</button>
+                <button id="start-over-btn" class="pull-right btn btn-default">To beginning</button>
+            </div>
             <div class="col-md-12">
               <div id="command-list" class="list-group"></div>
             </div>

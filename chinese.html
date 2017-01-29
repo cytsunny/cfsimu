@@ -975,6 +975,12 @@ $(function() {
         update();
     });
 
+    $('#start-over-btn').click(function(e) {
+        e.preventDefault();
+        command_list.set_current(0);
+        update();
+    })
+
     var update = function() {
         command_list.apply(board);
         update_command_list();
@@ -1076,18 +1082,19 @@ $(function() {
     $('#view-arrow').change(function(e) {
         update();
     });
-    $('#prev-command').click(function(e) {
+    $('#prev-command, #prev-btn').click(function(e) {
         e.preventDefault();
         e.stopPropagation();
         command_list.add_current(-1);
         update();
     });
-    $('#next-command').click(function(e) {
+    $('#next-command, #next-btn').click(function(e) {
         e.preventDefault();
         e.stopPropagation();
         command_list.add_current(1);
         update();
     });
+
 
     var update_command_list = function() {
         var tmpl = (
@@ -1338,7 +1345,10 @@ $(function() {
         </div>
         <div class="col-md-5">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
+                <h3>Portal 列表</h3>
+            </div>
+            <div class="col-md-6" style="margin-top: 20px;">
               <p id="portal-info" class="text-right">合計 Field 數: <span class="cf">10</span>(<span class="current-cf">5</span>), 合計 link 數: <span class="link">15</span>(<span class="current-link">10</span>)</p>
             </div>
             <div class="col-md-12">
@@ -1349,6 +1359,14 @@ $(function() {
             </div>
           </div>
           <div class="row">
+            <div class="col-md-6">
+                <h3>行動列表</h3>
+            </div>
+            <div class="col-md-6" style="margin-top: 20px">
+                <button id="next-btn" class="pull-right btn btn-default">下一步</button>
+                <button id="prev-btn" class="pull-right btn btn-default">上一步</button>
+                <button id="start-over-btn" class="pull-right btn btn-default">回到第一步</button>
+            </div>
             <div class="col-md-12">
               <div id="command-list" class="list-group"></div>
             </div>
